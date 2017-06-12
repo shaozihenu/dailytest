@@ -1,0 +1,42 @@
+<!--add.wxml-->
+<view class="page">
+  <view class="page__bd">
+
+    <view wx:if="{{whiteListFlag == true}}" class="weui-panel">
+      <view class="weui-panel__hd">功能</view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_small-appmsg">
+          <view class="weui-cells weui-cells_in-small-appmsg">
+            <navigator url="../new/new" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>创建题目</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="../white/white" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>新增白名单用户</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{whiteListFlag == false}}" class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <image mode="aspectFit" src="../../image/qidai.png"></image>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

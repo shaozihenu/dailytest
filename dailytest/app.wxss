@@ -1,0 +1,88 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+page {
+  background-color: #F8F8F8;
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+}
+.page-body {
+  width: 100%;
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+.page-body-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.page-body-wording {
+  text-align: center;
+  padding: 200rpx 100rpx;
+}
+.page-body-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width: 100%;
+  padding: 50rpx 0 150rpx 0;
+}
+.page-body-title {
+  margin-bottom: 100rpx;
+  font-size: 32rpx;
+}
+.page-body-text {
+  font-size: 30rpx;
+  line-height: 26px;
+  color: #ccc;
+}
+.page-body-text-small {
+  font-size: 24rpx;
+  color: #000;
+  margin-bottom: 100rpx;
+}
+
+.page-section{
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+.page-section_center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-section:last-child{
+  margin-bottom: 0;
+}
+.page-section-gap{
+  box-sizing: border-box;
+  padding: 0 30rpx;
+}
+.page-section-spacing{
+  box-sizing: border-box;
+  padding: 0 80rpx;
+}
+.page-section-title{
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+.page-section-gap .page-section-title{
+  padding-left: 0;
+  padding-right: 0;
+}
+.page-section-ctn{
+
+}

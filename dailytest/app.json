@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/new/new",
+    "pages/logs/logs",
+    "pages/new/new_success",
+    "pages/new/new_fail",
+    "pages/add/add",
+    "pages/white/white"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "每日练一题",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": "true"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "答题",
+        "iconPath": "image/iconfont-home.png",
+        "selectedIconPath": "image/iconfont-home-active.png"
+      },
+      {
+        "pagePath": "pages/add/add",
+        "text": "出题",
+        "iconPath": "image/iconfont-list.png",
+        "selectedIconPath": "image/iconfont-list-active.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "我的",
+        "iconPath": "image/iconfont-user.png",
+        "selectedIconPath": "image/iconfont-user-active.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

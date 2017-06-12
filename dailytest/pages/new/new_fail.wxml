@@ -1,0 +1,20 @@
+<!--new_fail.wxml-->
+<view class="page">
+  <view class="weui-msg">
+    <view class="weui-msg__icon-area">
+      <icon type="warn" size="93"></icon>
+    </view>
+    <view class="weui-msg__text-area">
+      <view class="weui-msg__title">操作失败</view>
+
+    </view>
+    <view class="weui-msg__opr-area">
+      <view class="weui-btn-area">
+       
+        <navigator class="weui-btn" url="new" hover-class="navigator-hover">返回</navigator>
+
+      </view>
+    </view>
+
+  </view>
+</view>

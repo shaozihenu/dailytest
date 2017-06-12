@@ -1,0 +1,31 @@
+<!--white.wxml-->
+<!--new.wxml-->
+<view class="page">
+  <view class="page-body">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="weui-cells__title">用户ID</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name="userid" class="weui-input" auto-focus placeholder="请输入用户ID" value="{{userId}}"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">微信昵称</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name="username" class="weui-input" auto-focus placeholder="请输入微信昵称" value="{{userInfo.nickName}}"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-btn-area">
+        <button type="primary" disabled="{{disableflag}}" formType="submit">确定</button>
+        <button type="dedault" formType="reset">清空</button>
+      </view>
+    </form>
+  </view>
+</view>
