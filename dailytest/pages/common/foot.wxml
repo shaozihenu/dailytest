@@ -1,0 +1,10 @@
+<template name="foot">
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-footer weui-footer_fixed-bottom">
+      <view class="weui-footer__links">
+        <navigator url="" class="weui-footer__link">答者荣耀</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright © 2017 客户回馈出品</view>
+    </view>
+  </view>
+</template>

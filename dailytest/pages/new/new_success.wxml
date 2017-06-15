@@ -1,4 +1,5 @@
 <!--new_success.wxml-->
+<import src="../common/foot.wxml" />
 <view class="page">
   <view class="weui-msg">
     <view class="weui-msg__icon-area">
@@ -16,4 +17,5 @@
     </view>
     
   </view>
+  <template is="foot" />
 </view>

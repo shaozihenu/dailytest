@@ -6,12 +6,13 @@
     "pages/new/new_success",
     "pages/new/new_fail",
     "pages/add/add",
-    "pages/white/white"
+    "pages/white/white",
+    "pages/my/my"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "每日练一题",
+    "navigationBarTitleText": "答者荣耀",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": "true"
   },
@@ -34,7 +35,7 @@
         "selectedIconPath": "image/iconfont-list-active.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "image/iconfont-user.png",
         "selectedIconPath": "image/iconfont-user-active.png"

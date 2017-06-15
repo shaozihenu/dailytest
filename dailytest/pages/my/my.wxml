@@ -1,0 +1,71 @@
+<import src="../common/foot.wxml" />
+<view class="page">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="page__bd">
+    <view wx:if="{{!topicList}}" class="weui-loadmore weui-loadmore_line">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{errorMsg}}</view>
+    </view>
+    <!--多选题-->
+    <view wx:if="{{topicList.topicType==1}}" class="page-section">
+      <view class="page-section-title_1">{{topicList.title}}</view>
+      <view class="page-section-title">{{topicList.subTitle}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <checkbox-group name="check_group">
+          <label class="weui-cell weui-check__label" wx:for="{{topicList.topicOptionArr}}" wx:for-item="option">
+            <view class="weui-cell__hd">
+              <checkbox value="{{option.seqno}}" disabled="{{disableflag}}" checked="{{option.isAnswer}}" />
+            </view>
+            <view class="weui-cell__bd">{{option.optionCotent}}</view>
+          </label>
+        </checkbox-group>
+      </view>
+      <!--增加解析内容-->
+    </view>
+    <!--单选题-->
+    <view wx:if="{{topicList.topicType==0}}" class="page-section">
+      <view class="page-section-title_1">{{topicList.title}}</view>
+      <view class="page-section-title">{{topicList.subTitle}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group name="radio_group">
+          <label class="weui-cell weui-check__label" wx:for="{{topicList.topicOptionArr}}" wx:for-item="option">
+
+            <view class="weui-cell__hd">
+              <radio value="{{option.seqno}}" disabled="{{disableflag}}" checked="{{option.isAnswer}}" />
+            </view>
+            <view class="weui-cell__bd">{{option.optionCotent}}</view>
+          </label>
+        </radio-group>
+      </view>
+      <!--增加解析内容-->
+    </view>
+
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">您的选项</view>
+
+          <view wx:if="{{answerDetail.isCorrect}}">
+            <view class="weui-form-preview__value" style="color:#00FF00">{{answerDetail.optionIds}} 恭喜您答对了</view>
+          </view>
+          <view wx:else>
+            <view class="weui-form-preview__value" style="color:#FF0000">{{answerDetail.optionIds}} 很遗憾请继续努力</view>
+          </view>
+
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">答题用时</view>
+          <view class="weui-form-preview__value">{{answerDetail.timeElapsed}}秒</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">题目解析</view>
+          <view class="weui-form-preview__value">{{topicList.analysis}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <template is="foot" />
+</view>

@@ -16,6 +16,22 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-module.exports = {
-  formatTime: formatTime
+function dateSubtractDate(date) {
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()-1
+
+  var hour = 23
+  var minute = 59
+  var second = 59
+
+
+  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
+
+module.exports = {
+  formatTime: formatTime,
+  dateSubtractDate: dateSubtractDate
+}
+
+

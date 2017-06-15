@@ -1,5 +1,5 @@
 <!--white.wxml-->
-<!--new.wxml-->
+<import src="../common/foot.wxml" />
 <view class="page">
   <view class="page-body">
   <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
@@ -28,4 +28,5 @@
       </view>
     </form>
   </view>
+  <template is="foot" />
 </view>
