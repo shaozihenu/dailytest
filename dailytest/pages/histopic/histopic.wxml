@@ -1,0 +1,25 @@
+<!--histopic.wxml-->
+<view class="page">
+  <view class="page__bd">
+
+    <view class="weui-panel">
+      <view class="weui-panel__hd">历史题目列表</view>
+      <view wx:for="{{hisTopicList}}" wx:for-index="idx" wx:for-item="topic">
+        <navigator url="../topic/topic?topicId={{topic.topicId}}" hover-class="weui-cell_active">
+          <view class="weui-panel__bd">
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__title weui-media-box__title_in-text">{{idx+1}}.{{topic.title}}</view>
+              <view class="weui-media-box__desc">{{topic.beginDate}}-{{topic.endDate}}</view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta">题目发布人</view>
+                <view class="weui-media-box__info__meta">{{topic.publisher}}</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{topic.topicType==0 ? '单选题' : '多选题'}}</view>          
+              </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>

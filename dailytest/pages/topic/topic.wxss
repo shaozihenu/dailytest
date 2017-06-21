@@ -1,4 +1,4 @@
-/* my.wxss */
+/* topic.wxss */
 @import "../index/index.wxss";
 .topic-userinfo-avatar {
   width: 64rpx;

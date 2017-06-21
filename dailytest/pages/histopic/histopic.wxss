@@ -1,0 +1,2 @@
+/* histopic.wxss */
+@import "../../libs/weui.wxss";

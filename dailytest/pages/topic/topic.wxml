@@ -1,0 +1,88 @@
+<!--topic.wxml-->
+<import src="../common/foot.wxml" />
+<view class="page">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+
+  <view class="page__bd">
+    <view wx:if="{{!topic}}" class="weui-loadmore weui-loadmore_line">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{errorMsg}}</view>
+    </view>
+    <!--多选题-->
+    <view wx:if="{{topic.topicType==1}}" class="page-section">
+      <view class="page-section-title_1">{{topic.title}}</view>
+      <view class="page-section-title">{{topic.subTitle}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <checkbox-group name="check_group">
+          <label class="weui-cell weui-check__label" wx:for="{{topic.topicOptionArr}}" wx:for-item="option">
+            <view class="weui-cell__hd">
+              <checkbox value="{{option.seqno}}" disabled="{{disableflag}}" checked="{{option.isAnswer}}" />
+            </view>
+            <view class="weui-cell__bd">{{option.optionCotent}}</view>
+          </label>
+        </checkbox-group>
+      </view>
+      <!--增加解析内容-->
+    </view>
+    <!--单选题-->
+    <view wx:if="{{topic.topicType==0}}" class="page-section">
+      <view class="page-section-title_1">{{topic.title}}</view>
+      <view class="page-section-title">{{topic.subTitle}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group name="radio_group">
+          <label class="weui-cell weui-check__label" wx:for="{{topic.topicOptionArr}}" wx:for-item="option">
+
+            <view class="weui-cell__hd">
+              <radio value="{{option.seqno}}" disabled="{{disableflag}}" checked="{{option.isAnswer}}" />
+            </view>
+            <view class="weui-cell__bd">{{option.optionCotent}}</view>
+          </label>
+        </radio-group>
+      </view>
+      <!--增加解析内容-->
+      
+    </view>
+
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">参与人数</view>
+
+          <view class="weui-form-preview__value">{{allCount}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">答对人数</view>
+          <view class="weui-form-preview__value" style="color:#00FF00">{{correctCount}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">答错人数</view>
+          <view class="weui-form-preview__value" style="color:#FF0000">{{errorCount}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">题目解析</view>
+          <view class="weui-form-preview__value">{{topic.analysis}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-panel">
+      <view class="weui-panel__hd"><image src="../../image/chaofan.jpg" class="topic-userinfo-avatar" />英雄榜</view>
+      <view wx:for="{{answerDetail}}" wx:for-index="idx" wx:for-item="answer">
+
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">
+              <view class="weui-cell__hd">
+                <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}}</view>
+            </view>
+            <view class="weui-media-box__desc">答题时间 {{answer.beginTime}}-{{answer.endTime}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">答题用时</view>
+              <view class="weui-media-box__info__meta">{{answer.timeElapsed}}秒</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

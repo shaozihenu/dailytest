@@ -112,5 +112,5 @@
       </view>
     </form>
   </view>
-  <template is="foot" />
+  <!--<template is="foot" />-->
 </view>

@@ -1,6 +1,7 @@
 // add.js
 const AV = require('../../libs/av-weapp-min.js')
 const base64 = require("../../libs/base64");
+const user = AV.User.current();
 Page({
 
   /**
@@ -17,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     // 获得当前登录用户
-    const user = AV.User.current();
+    var that = this
     console.log('add', user.toJSON());
     // 调用小程序 API，得到用户信息
     wx.getUserInfo({
@@ -28,7 +29,7 @@ Page({
         }).catch(console.error);
       }
     });
-    this.qryWhiteUser(user);
+
   },
   qryWhiteUser(user) {
     /*//声明类型
@@ -41,7 +42,7 @@ Page({
     new AV.Query('whiteList')
       .equalTo('userId', user.get('username'))
       .first()
-      .then((data => this.setData({ whiteListFlag: data ? true:false }))).catch(console.error)
+      .then((data => this.setData({ whiteListFlag: data ? true : false }))).catch(console.error)
 
     /*var query = new AV.Query('whiteList');
     query.equalTo('userId', user.get('username'));
@@ -72,7 +73,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this
+    new AV.Query('dict')
+      .equalTo('name', 'whitelistswitch')
+      .first()
+      .then((data =>
+        data.get('value') == '0' ? that.setData({ whiteListFlag: true }) : that.qryWhiteUser(user))).catch(console.error)
   },
 
   /**

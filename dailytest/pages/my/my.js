@@ -14,7 +14,13 @@ Page({
     showTopTips: false,
     disableflag: false,
     answerYet: null,
-    answerDetail: null
+    answerDetail: null,
+    nowTime: util.formatTime(new Date()),
+    correctCount: 0,
+    errorCount: 0,
+    allCount: 0,
+    allCountTimes:0,
+    alltopicCount:0
   },
   onLoad: function () {
     console.log('onLoad')
@@ -26,7 +32,23 @@ Page({
         userInfo: userInfo
       })
     })
+    that.getNowTime()
+  },
+  getNowTime() {
+    var nowTime = setInterval(() => {
+      this.setData({ nowTime: util.formatTime(new Date()) })
+      // clearTimeout(fadeOutTimeout);
+    }, 1000);
+  },
+  onShow: function () {
+    // Do something when page show.
+    var that = this
     that.getMyTopicList()
+    that.getAllUserCount()
+    that.getCorrectCount()
+    that.getErrorCount()
+    that.getAllCount()
+    that.getAllTopicCount()
   },
   getMyTopicList: function () {
     var query = new AV.Query('answerDetail')
@@ -35,9 +57,57 @@ Page({
     console.log('lastDate', lastDate)
     query.equalTo("userId", user.get('username'))
     query.lessThanOrEqualTo('endTime', new Date(lastDate))
-    query.first()
+    query.find()
       .then((data => {
-        this.setData({ answerDetail: data, answerYet: data ? true : false, disableflag: data ? true : false, topicList: data ? data.get('topicObj') : null })
+        if (data) {
+          for (var i = 0, len = data.length; i < len; ++i) {
+            data[i].set('beginTime', util.formatTime(data[i].get('beginTime')))
+            data[i].set('endTime', util.formatTime(data[i].get('endTime')))
+          }
+        }
+        this.setData({ answerDetail: data, answerYet: data ? true : false, disableflag: data ? true : false})
+      }
+      )).catch(console.error)
+  },
+  getCorrectCount: function () {
+    new AV.Query('answerDetail')
+      .equalTo('isCorrect', true)
+      .count()
+      .then((count => {
+        this.setData({ correctCount: count })
+      }
+      )).catch(console.error)
+  },
+  getErrorCount: function () {
+    new AV.Query('answerDetail')
+      .equalTo('isCorrect', false)
+      .count()
+      .then((count => {
+        this.setData({ errorCount: count })
+      }
+      )).catch(console.error)
+  },
+  getAllCount: function () {
+    new AV.Query('answerDetail')
+      .count()
+      .then((count => {
+        this.setData({ allCountTimes: count })
+      }
+      )).catch(console.error)
+  },
+  getAllUserCount: function () {
+    new AV.Query('_User')
+      .count()
+      .then((count => {
+        this.setData({ allCount: count })
+      }
+      )).catch(console.error)
+  },
+  getAllTopicCount: function () {
+    new AV.Query('topic')
+      .count()
+      .then((count => {
+        this.setData({ alltopicCount: count })
       }
       )).catch(console.error)
   },

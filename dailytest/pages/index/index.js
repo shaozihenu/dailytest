@@ -63,6 +63,9 @@ Page({
       obj.beginTime = beginTime
       obj.answerArr = answerArr
       obj.userName = this.data.userInfo.nickName
+      obj.gender = this.data.userInfo.gender
+      obj.avatarUrl = this.data.userInfo.avatarUrl
+
       obj.optionIds = e.detail.value.radio_group
       console.log('obj.optionIds', obj.optionIds)
       if (correctAnswer == obj.optionIds) {
@@ -101,6 +104,8 @@ Page({
       obj.beginTime = beginTime
       obj.answerArr = answerArr
       obj.userName = this.data.userInfo.nickName
+      obj.gender = this.data.userInfo.gender
+      obj.avatarUrl = this.data.userInfo.avatarUrl
 
       arr.sort()
       obj.optionIds = arr.toString()
@@ -141,6 +146,8 @@ Page({
     answerDetail.set("topicObj", obj.topic.toJSON());
     answerDetail.set("answerArr", obj.answerArr);
     answerDetail.set("userName", obj.userName);
+    answerDetail.set("gender", obj.gender);
+    answerDetail.set("avatarUrl", obj.avatarUrl);
     console.log(answerDetail.toJSON())
     answerDetail.save().then(function (answerDetail) {
       //添加选项
@@ -206,6 +213,13 @@ Page({
       that.setData({
         userInfo: userInfo
       })
+    })
+    
+  },
+  onShow: function () {
+    var that = this 
+    that.setData({
+      beginTime: new Date()
     })
     that.getTopicList()
   },

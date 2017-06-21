@@ -1,71 +1,106 @@
 <import src="../common/foot.wxml" />
 <view class="page">
   <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
-  <view class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+
+  <view class="page__hd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+          <image src="{{userInfo.avatarUrl}}" class="userinfo-avatar" />
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{userInfo.nickName}}</view>
+          <view style="font-size: 13px;color: #888888;">{{nowTime}}</view>
+          <navigator url="../histopic/histopic" hover-class="weui-cell_active">
+            <view class="weui-cell__ft weui-cell__ft_in-access">历史题目</view>
+          </navigator>
+        </view>
+      </view>
+    </view>
   </view>
-  <view class="page__bd">
-    <view wx:if="{{!topicList}}" class="weui-loadmore weui-loadmore_line">
-      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{errorMsg}}</view>
-    </view>
-    <!--多选题-->
-    <view wx:if="{{topicList.topicType==1}}" class="page-section">
-      <view class="page-section-title_1">{{topicList.title}}</view>
-      <view class="page-section-title">{{topicList.subTitle}}</view>
-      <view class="weui-cells weui-cells_after-title">
-        <checkbox-group name="check_group">
-          <label class="weui-cell weui-check__label" wx:for="{{topicList.topicOptionArr}}" wx:for-item="option">
-            <view class="weui-cell__hd">
-              <checkbox value="{{option.seqno}}" disabled="{{disableflag}}" checked="{{option.isAnswer}}" />
-            </view>
-            <view class="weui-cell__bd">{{option.optionCotent}}</view>
-          </label>
-        </checkbox-group>
-      </view>
-      <!--增加解析内容-->
-    </view>
-    <!--单选题-->
-    <view wx:if="{{topicList.topicType==0}}" class="page-section">
-      <view class="page-section-title_1">{{topicList.title}}</view>
-      <view class="page-section-title">{{topicList.subTitle}}</view>
-      <view class="weui-cells weui-cells_after-title">
-        <radio-group name="radio_group">
-          <label class="weui-cell weui-check__label" wx:for="{{topicList.topicOptionArr}}" wx:for-item="option">
 
-            <view class="weui-cell__hd">
-              <radio value="{{option.seqno}}" disabled="{{disableflag}}" checked="{{option.isAnswer}}" />
-            </view>
-            <view class="weui-cell__bd">{{option.optionCotent}}</view>
-          </label>
-        </radio-group>
-      </view>
-      <!--增加解析内容-->
-    </view>
-
+<!--总榜-->
+  <view class="page__hd">
+  <view class="weui-cells__title">题目统计</view>
     <view class="weui-form-preview">
       <view class="weui-form-preview__bd">
         <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">您的选项</view>
+          <view class="weui-form-preview__label">参与人数</view>
 
-          <view wx:if="{{answerDetail.isCorrect}}">
-            <view class="weui-form-preview__value" style="color:#00FF00">{{answerDetail.optionIds}} 恭喜您答对了</view>
-          </view>
-          <view wx:else>
-            <view class="weui-form-preview__value" style="color:#FF0000">{{answerDetail.optionIds}} 很遗憾请继续努力</view>
-          </view>
-
+          <view class="weui-form-preview__value">{{allCount}}</view>
         </view>
         <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">答题用时</view>
-          <view class="weui-form-preview__value">{{answerDetail.timeElapsed}}秒</view>
+          <view class="weui-form-preview__label">参与次数</view>
+
+          <view class="weui-form-preview__value">{{allCountTimes}}</view>
         </view>
         <view class="weui-form-preview__item">
-          <view class="weui-form-preview__label">题目解析</view>
-          <view class="weui-form-preview__value">{{topicList.analysis}}</view>
+          <view class="weui-form-preview__label">答对次数</view>
+          <view class="weui-form-preview__value" style="color:#00FF00">{{correctCount}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">答错次数</view>
+          <view class="weui-form-preview__value" style="color:#FF0000">{{errorCount}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">全部题目</view>
+          <view class="weui-form-preview__value">{{alltopicCount}}道</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-panel">
+      <view class="weui-panel__hd">
+      <image src="../../image/wangzhe.jpg" class="topic-userinfo-avatar" />荣耀榜
+      </view>
+      <view wx:for="{{answerDetail}}" wx:for-index="idx" wx:for-item="answer">
+
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">
+              <view class="weui-cell__hd">
+                <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}}</view>
+            </view>
+            <view class="weui-media-box__desc">答题数量 {{topicCount}}</view>
+            <view class="weui-media-box__desc">答对题目 {{correctCount}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">答题平均用时</view>
+              <view class="weui-media-box__info__meta">{{answer.timeElapsed}}秒</view>
+            </view>
+          </view>
         </view>
       </view>
     </view>
   </view>
-  <template is="foot" />
+
+  <view class="page__bd">
+  <view class="weui-cells__title">我的历史答题列表</view>
+    <view class="weui-panel">
+      <view wx:for="{{answerDetail}}" wx:for-index="idx" wx:for-item="topic">
+        <navigator url="../mytopic/mytopic?topicId={{topic.topicId}}&optionIds={{topic.optionIds}}&timeElapsed={{topic.timeElapsed}}&isCorrect={{topic.isCorrect}}" hover-class="weui-cell_active">
+          <view class="weui-panel__bd">
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__title weui-media-box__title_in-text">{{idx+1}}.{{topic.topicObj.title}}</view>
+              <view class="weui-media-box__desc">答题时间 {{topic.beginTime}} - {{topic.endTime}}</view>
+              <view wx:if="{{topic.isCorrect}}">
+                <view class="weui-media-box__desc" style="color:#00FF00">恭喜您答对了，点击查看题目详情</view>
+              </view>
+              <view wx:else>
+                <view class="weui-media-box__desc" style="color:#FF0000">很遗憾您答错了，点击查看题目详情</view>
+              </view>
+
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta">题目发布人</view>
+                <view class="weui-media-box__info__meta">{{topic.topicObj.publisher}}</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{topic.topicObj.topicType==0 ? '单选题' : '多选题'}}</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <!--<template is="foot" />-->
 </view>
