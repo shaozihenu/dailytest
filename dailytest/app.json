@@ -10,7 +10,8 @@
     "pages/my/my",
     "pages/histopic/histopic",
     "pages/topic/topic",
-    "pages/mytopic/mytopic"
+    "pages/mytopic/mytopic",
+    "pages/addphases/addphases"
   ],
   "window": {
     "backgroundTextStyle": "light",

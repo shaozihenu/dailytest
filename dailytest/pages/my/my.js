@@ -4,7 +4,7 @@ var util = require('../../utils/util.js')
 const AV = require('../../libs/av-weapp-min.js')
 var app = getApp()
 var page = getCurrentPages()
-
+var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 Page({
   data: {
     userInfo: {},
@@ -19,8 +19,14 @@ Page({
     correctCount: 0,
     errorCount: 0,
     allCount: 0,
-    allCountTimes:0,
-    alltopicCount:0
+    allCountTimes: 0,
+    alltopicCount: 0,
+    totalList: null,
+    top5List: null,
+    tabs: ["荣耀榜", "题目统计", "我的答题"],
+    activeIndex: 0,
+    sliderOffset: 0,
+    sliderLeft: 0
   },
   onLoad: function () {
     console.log('onLoad')
@@ -31,7 +37,15 @@ Page({
       that.setData({
         userInfo: userInfo
       })
-    })
+    });
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        });
+      }
+    });
     that.getNowTime()
   },
   getNowTime() {
@@ -40,9 +54,16 @@ Page({
       // clearTimeout(fadeOutTimeout);
     }, 1000);
   },
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
+  },
   onShow: function () {
     // Do something when page show.
     var that = this
+    that.getTop5List()
     that.getMyTopicList()
     that.getAllUserCount()
     that.getCorrectCount()
@@ -57,6 +78,7 @@ Page({
     console.log('lastDate', lastDate)
     query.equalTo("userId", user.get('username'))
     query.lessThanOrEqualTo('endTime', new Date(lastDate))
+    query.descending('createdAt')
     query.find()
       .then((data => {
         if (data) {
@@ -65,7 +87,30 @@ Page({
             data[i].set('endTime', util.formatTime(data[i].get('endTime')))
           }
         }
-        this.setData({ answerDetail: data, answerYet: data ? true : false, disableflag: data ? true : false})
+        this.setData({ answerDetail: data, answerYet: data ? true : false, disableflag: data ? true : false })
+      }
+      )).catch(console.error)
+  },
+  getTotalList: function () {
+    var query = new AV.Query('totalList')
+    query.addDescending('correctCount')
+    query.addAscending('correctElapsed')
+    query.addDescending('totalCount')
+    query.find()
+      .then((data => {
+        this.setData({ totalList: data })
+      }
+      )).catch(console.error)
+  },
+  getTop5List: function () {
+    var query = new AV.Query('totalList')
+    query.addDescending('correctCount')
+    query.addAscending('correctElapsed')
+    query.addDescending('totalCount')
+    query.limit(5)
+    query.find()
+      .then((data => {
+        this.setData({ top5List: data })
       }
       )).catch(console.error)
   },

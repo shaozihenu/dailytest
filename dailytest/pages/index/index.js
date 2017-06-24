@@ -15,7 +15,7 @@ Page({
     beginTime: new Date(),
     disableflag: false,
     answerYet: null,
-    answerArr:[]
+    answerArr: []
   },
   formReset: function () {
     console.log('form发生了reset事件')
@@ -214,10 +214,10 @@ Page({
         userInfo: userInfo
       })
     })
-    
+
   },
   onShow: function () {
-    var that = this 
+    var that = this
     that.setData({
       beginTime: new Date()
     })
@@ -235,7 +235,7 @@ Page({
     query.descending('createdAt').first()
       .then((data => {
         this.setData({ topicList: data })
-        if(!data) {
+        if (!data) {
           this.setData({ errorMsg: '还没有出题呢，再等等吧' })
           return
         }
@@ -250,7 +250,7 @@ Page({
     query.equalTo("topicId", topicList.get('topicId'))
     query.first()
       .then((data => {
-        this.setData({ answerDetail: data, answerYet: data ? true : false, disableflag: data ? true : false, answerArr: data ?data.get('answerArr'):[]})
+        this.setData({ answerDetail: data, answerYet: data ? true : false, disableflag: data ? true : false, answerArr: data ? data.get('answerArr') : [] })
       }
       )).catch(console.error)
   },
@@ -258,5 +258,44 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    var that = this
+    that.setData({
+      beginTime: new Date()
+    })
+    that.getTopicList()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

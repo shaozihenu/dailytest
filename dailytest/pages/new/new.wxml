@@ -23,6 +23,17 @@
         </view>
       </view>
 
+<view class="weui-cells__title">选择期次</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__bd">
+            <picker name="phase" bindchange="bindPhaseChange" value="{{phaseIdx}}" range="{{phaseArray}}" range-key="phaseName">
+              <view class="weui-select">{{phaseArray[phaseIdx].phaseName}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
       <view class="weui-cells__title">题目类型</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_select">

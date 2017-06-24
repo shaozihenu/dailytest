@@ -1,8 +1,8 @@
 /* my.wxss */
 @import "../index/index.wxss";
 .topic-userinfo-avatar {
-  width: 64rpx;
-  height: 64rpx;
+  width: 96rpx;
+  height: 96rpx;
   margin: 5rpx;
   border-radius: 50%;
 }

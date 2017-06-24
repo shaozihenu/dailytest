@@ -11,7 +11,7 @@
     </view>
     <view class="weui-msg__opr-area">
       <view class="weui-btn-area">
-        <navigator url="../add/add" class="weui-msg__title" hover-class="other-navigator-hover">返回到出题页</navigator>
+        <navigator url="../add/add" class="weui-msg__title" open-type="switchTab" hover-class="other-navigator-hover">返回到出题页</navigator>
         
       </view>
     </view>

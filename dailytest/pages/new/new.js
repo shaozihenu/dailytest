@@ -10,6 +10,8 @@ Page({
   data: {
     topicType: ['单选', '多选'],
     topicTypeIdx: 0,
+    phaseIdx: 0,
+    phaseArray: [],
     topicOptions: ['topicOption0'],
     beginDate: '',
     endDate: '',
@@ -48,6 +50,12 @@ Page({
     })
     console.log('当前携带值为', this.data.topicOptions)
   },
+  bindPhaseChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      phaseIdx: e.detail.value
+    })
+  },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
@@ -73,6 +81,14 @@ Page({
       this.setData({
         showTopTips: true,
         errorMsg: '题目标题不能为空'
+      })
+      this.ohShitfadeOut();
+      return;
+    }
+    if (e.detail.value.phase == "") {
+      this.setData({
+        showTopTips: true,
+        errorMsg: '期次不能为空'
       })
       this.ohShitfadeOut();
       return;
@@ -347,7 +363,7 @@ Page({
     var topicFolder = new TopicFolder();
     //设置属性
     topicFolder.set("topicType", parseInt(e.detail.value.topicType));
-    topicFolder.set("phase", 1);
+    topicFolder.set("phase", this.data.phaseArray[e.detail.value.phase].get('phaseNum'));
     topicFolder.set("status", 0);
     topicFolder.set("title", e.detail.value.topicTitle);
     topicFolder.set("subTitle", e.detail.value.topicSubTitle);
@@ -454,6 +470,13 @@ Page({
       clearTimeout(fadeOutTimeout);
     }, 3000);
   },
+  queryPhases: function () {
+    new AV.Query('phases').ascending('endDate')
+      .find()
+      .then((data => {
+        this.setData({ phaseArray: data })
+      })).catch(console.error)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -467,7 +490,9 @@ Page({
         userInfo: userInfo
       })
     })
+
     console.log(that.data.userInfo)
+    that.queryPhases()
   },
 
   /**

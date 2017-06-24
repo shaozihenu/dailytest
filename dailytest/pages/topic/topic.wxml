@@ -39,7 +39,7 @@
         </radio-group>
       </view>
       <!--增加解析内容-->
-      
+
     </view>
 
     <view class="weui-form-preview">
@@ -65,14 +65,24 @@
     </view>
 
     <view class="weui-panel">
-      <view class="weui-panel__hd"><image src="../../image/chaofan.jpg" class="topic-userinfo-avatar" />英雄榜</view>
+      <view class="weui-panel__hd">
+        <image src="../../image/ph1.png" class="topic-userinfo-avatar" />英雄榜</view>
       <view wx:for="{{answerDetail}}" wx:for-index="idx" wx:for-item="answer">
 
         <view class="weui-panel__bd">
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">
               <view class="weui-cell__hd">
-                <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}}</view>
+              <view class="weui-badge" style="position: absolute">{{idx+1}}</view>
+                <view wx:if="{{idx == 0}}" style="color:#FFD700">
+                  <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}} </view>
+                <view wx:elif="{{idx == 1}}" style="color:#C0C0C0">
+                  <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}} </view>
+                <view wx:elif="{{idx == 2}}" style="color:#B87333">
+                  <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}} </view>
+                <view wx:else>
+                  <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}} </view>
+              </view>
             </view>
             <view class="weui-media-box__desc">答题时间 {{answer.beginTime}}-{{answer.endTime}}</view>
             <view class="weui-media-box__info">

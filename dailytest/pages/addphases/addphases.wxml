@@ -1,0 +1,70 @@
+<!--addphases.wxml-->
+<import src="../common/foot.wxml" />
+<view class="page">
+  <view class="page-body">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    
+    <!--期次表单-->
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="weui-cells__title">期次名称</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input name="phaseName" class="weui-input" auto-focus placeholder="请输入期次名称" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">选择起止日期</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">生效起始日期</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker name="beginDate" mode="date" value="{{beginDate}}" start="2017-01-01" end="2020-01-01" bindchange="bindBeginDateChange">
+              <view class="weui-input">{{beginDate}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">生效截止日期</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker name="endDate" mode="date" value="{{endDate}}" start="2017-01-01" end="2020-01-01" bindchange="bindEndDateChange">
+              <view class="weui-input">{{endDate}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="weui-btn-area">
+        <button type="primary" disabled="{{disableflag}}" formType="submit">确定</button>
+        <button type="dedault" formType="reset">清空</button>
+      </view>
+    </form>
+    <!--期次列表-->
+    <view class="weui-cells__title"wx:if="{{phasesList}}">期次列表</view>
+
+    <view class="weui-form-preview" wx:for="{{phasesList}}" wx:for-item="phase">
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">期次编号</view>
+          <view class="weui-form-preview__value">{{phase.phaseNum}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">期次名称</view>
+          <view class="weui-form-preview__value">{{phase.phaseName}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">生效起始日期</view>
+          <view class="weui-form-preview__value">{{phase.beginDate}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">生效截止日期</view>
+          <view class="weui-form-preview__value">{{phase.endDate}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
