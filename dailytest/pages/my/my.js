@@ -98,12 +98,13 @@ Page({
     query.addDescending('totalCount')
     query.find()
       .then((data => {
-        this.setData({ totalList: data })
+        this.setData({ top5List: data })
       }
       )).catch(console.error)
   },
   getTop5List: function () {
     var query = new AV.Query('totalList')
+    query.greaterThan('correctCount', 0)
     query.addDescending('correctCount')
     query.addAscending('correctElapsed')
     query.addDescending('totalCount')
@@ -160,5 +161,18 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    this.getTotalList()
+  },
 })

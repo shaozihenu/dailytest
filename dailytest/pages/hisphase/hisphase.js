@@ -1,4 +1,4 @@
-// histopic.js
+// hisphase.js
 const AV = require('../../libs/av-weapp-min.js')
 var util = require('../../utils/util.js')
 Page({
@@ -29,6 +29,7 @@ Page({
         }
       })).catch(console.error)
   },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -11,7 +11,9 @@
     "pages/histopic/histopic",
     "pages/topic/topic",
     "pages/mytopic/mytopic",
-    "pages/addphases/addphases"
+    "pages/addphases/addphases",
+    "pages/datahandle/datahandle",
+    "pages/hisphase/hisphase"
   ],
   "window": {
     "backgroundTextStyle": "light",

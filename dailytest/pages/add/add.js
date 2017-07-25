@@ -10,7 +10,8 @@ Page({
   data: {
     whiteListFlag: false,
     icon20: base64.icon20,
-    icon60: base64.icon60
+    icon60: base64.icon60,
+    imagePath:null
   },
 
   /**
@@ -42,7 +43,7 @@ Page({
     new AV.Query('whiteList')
       .equalTo('userId', user.get('username'))
       .first()
-      .then((data => this.setData({ whiteListFlag: data ? true : false }))).catch(console.error)
+      .then((data => this.setData({ whiteListFlag: data ? true : false, imagePath: data ? null : '../../image/qidai.png' }))).catch(console.error)
 
     /*var query = new AV.Query('whiteList');
     query.equalTo('userId', user.get('username'));

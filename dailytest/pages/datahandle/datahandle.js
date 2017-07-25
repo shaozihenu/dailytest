@@ -1,39 +1,27 @@
-// histopic.js
+// datahandle.js
 const AV = require('../../libs/av-weapp-min.js')
-var util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    hisTopicList: null,
-  },
-  getHisTopic: function () {
-    var now = new Date();
-    var query = new AV.Query('topic');
 
-    query.lessThan('endDate', now);
-
-    query.descending('createdAt').find()
-      .then((data => {
-        if (data) {
-          for (var i = 0, len = data.length; i < len; ++i) {
-            data[i].set('beginDate', util.formatTime(data[i].get('beginDate')))
-            data[i].set('endDate', util.formatTime(data[i].get('endDate')))
-          }
-        }
-        this.setData({ hisTopicList: data })
-        if (!data) {
-          this.setData({ errorMsg: '还没有到期的题目，到答题页看看吧' })
-        }
-      })).catch(console.error)
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 执行 CQL 语句实现更新一个 TodoFolder 对象
+    AV.Query.doCloudQuery("update rankingList set totalCountNew=10 and errorCountNew=5 and correctCountNew=5 and errorElapsedNew=2 and correctElapsedNew=2 and totalElapsedNew=2 where objectId='595352820ce46300578e5963'")
+      .then(function (data) {
+        // data 中的 results 是本次查询返回的结果，AV.Object 实例列表
+        var results = data.results;
+      }, function (error) {
+        // 异常处理
+        console.error(error);
+      });
   },
 
   /**
@@ -47,7 +35,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getHisTopic()
+
   },
 
   /**

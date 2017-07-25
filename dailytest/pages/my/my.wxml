@@ -34,15 +34,17 @@
           <!--选项一的内容begin-->
           <view class="weui-panel">
             <view class="weui-panel__hd">
-              <image src="../../image/ph3.png" class="topic-userinfo-avatar" />荣耀榜
+              <image src="../../image/ph3.png" class="topic-userinfo-avatar" />荣耀榜（截至上日）
             </view>
             <view wx:for="{{top5List}}" wx:for-index="idx" wx:for-item="answer">
 
               <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text">
                   <view class="weui-media-box__title weui-media-box__title_in-text">
-                    <view class="weui-cell__hd">                     <view class="weui-badge" style="position: absolute">{{idx+1}}</view>      
-                      <view wx:if="{{idx == 0}}" style="color:#FFD700"><image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}} </view>
+                    <view class="weui-cell__hd">
+                      <view class="weui-badge" style="position: absolute">{{idx+1}}</view>
+                      <view wx:if="{{idx == 0}}" style="color:#FFD700">
+                        <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}} </view>
                       <view wx:elif="{{idx == 1}}" style="color:#C0C0C0">
                         <image src="{{answer.avatarUrl}}" class="topic-userinfo-avatar" />{{answer.userName}}{{answer.gender==1?'♂':'♀'}} </view>
                       <view wx:elif="{{idx == 2}}" style="color:#B87333">
@@ -58,6 +60,11 @@
                     <view class="weui-media-box__info__meta">{{answer.correctElapsed/answer.correctCount}}秒</view>
                   </view>
                 </view>
+              </view>
+            </view>
+            <view class="page__bd">
+              <view class="weui-loadmore weui-loadmore_line">
+                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">上拉查看更多排名</view>
               </view>
             </view>
           </view>
