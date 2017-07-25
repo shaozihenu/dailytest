@@ -48,5 +48,9 @@
     </form>
   </view>
 </view>
+<view class="weui-msg__desc">
+  <icon type="warn" size="25" color="gray"/>
+  　完成答题后可以在“我的”页面查看上日答题情况
+</view>
 <template is="foot" />
 </view>

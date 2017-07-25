@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     // 获得当前登录用户
     var that = this
-    console.log('add', user.toJSON());
+    //console.log('add', user.toJSON());
     // 调用小程序 API，得到用户信息
     wx.getUserInfo({
       success: ({userInfo}) => {
