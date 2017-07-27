@@ -13,7 +13,8 @@
     "pages/mytopic/mytopic",
     "pages/addphases/addphases",
     "pages/datahandle/datahandle",
-    "pages/hisphase/hisphase"
+    "pages/hisphase/hisphase",
+    "pages/fileupload/fileupload"
   ],
   "window": {
     "backgroundTextStyle": "light",

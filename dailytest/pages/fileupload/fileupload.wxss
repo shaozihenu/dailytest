@@ -1,0 +1,2 @@
+/* fileupload.wxss */
+@import "../../libs/weui.wxss";

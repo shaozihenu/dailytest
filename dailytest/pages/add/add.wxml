@@ -36,6 +36,16 @@
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
 
+            <navigator url="../fileupload/fileupload" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>广告图片上传</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+
             <!--begin-->
             <!--<navigator url="../datahandle/datahandle" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
               <view class="weui-cell__hd">

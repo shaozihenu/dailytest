@@ -1,0 +1,14 @@
+<!--fileupload.wxml-->
+<import src="../common/foot.wxml" />
+<view class="page">
+  <view class="page-body">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{errorMsg}}</view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      
+      <view class="weui-btn-area">
+        <button type="primary" disabled="{{disableflag}}" formType="submit">点击上传文件</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

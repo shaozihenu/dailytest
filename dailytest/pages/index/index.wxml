@@ -4,6 +4,10 @@
   <view wx:if="{{!topicList}}" class="weui-loadmore weui-loadmore_line">
     <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{errorMsg}}</view>
   </view>
+  <!--广告图片-->
+  <view wx:if="{{hasAdvertPic == true}}" style="padding: 5px 5px;">
+          <image mode="aspectFill" style="height:120px;width:100%" src="{{advertPic.url}}"></image>
+    </view>
   <!--多选题-->
   <view wx:if="{{topicList.topicType==1}}" class="page-section">
     <form bindsubmit="formSubmit" bindreset="formReset">

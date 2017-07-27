@@ -15,7 +15,9 @@ Page({
     beginTime: new Date(),
     disableflag: false,
     answerYet: null,
-    answerArr: []
+    answerArr: [],
+    hasAdvertPic:false,
+    advertPic:null
   },
   formReset: function () {
     console.log('form发生了reset事件')
@@ -214,7 +216,7 @@ Page({
         userInfo: userInfo
       })
     })
-
+    that.getAdvertPic()
   },
   onShow: function () {
     var that = this
@@ -251,6 +253,17 @@ Page({
     query.first()
       .then((data => {
         this.setData({ answerDetail: data, answerYet: data ? true : false, disableflag: data ? true : false, answerArr: data ? data.get('answerArr') : [] })
+      }
+      )).catch(console.error)
+  },
+  getAdvertPic: function () {
+    var query = new AV.Query('_File')
+    // 按时间，降序排列
+    query.descending('createdAt')
+    query.first()
+      .then((data => {
+        console.log('picdata',data)
+        this.setData({ advertPic: data, hasAdvertPic: data ? true : false })
       }
       )).catch(console.error)
   },

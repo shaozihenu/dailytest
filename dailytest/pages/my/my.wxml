@@ -57,7 +57,7 @@
                   <view class="weui-media-box__desc">答对题目 {{answer.correctCount}}</view>
                   <view class="weui-media-box__info">
                     <view class="weui-media-box__info__meta">答题平均用时</view>
-                    <view class="weui-media-box__info__meta">{{answer.correctElapsed/answer.correctCount}}秒</view>
+                    <view class="weui-media-box__info__meta">{{answer.correctAvgTime}}秒</view>
                   </view>
                 </view>
               </view>

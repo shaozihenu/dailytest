@@ -96,8 +96,19 @@ Page({
     query.addDescending('correctCount')
     query.addAscending('correctElapsed')
     query.addDescending('totalCount')
+    query.limit(20)
     query.find()
       .then((data => {
+        if (data) {
+          for (var i = 0, len = data.length; i < len; ++i) {
+            if (data[i].get('correctCount') == 0) {
+              data[i].set('correctAvgTime', 'N/A')
+            } else {
+              data[i].set('correctAvgTime', Math.round(data[i].get('correctElapsed') / data[i].get('correctCount')))
+
+            }
+          }
+        }
         this.setData({ top5List: data })
       }
       )).catch(console.error)
@@ -111,6 +122,16 @@ Page({
     query.limit(5)
     query.find()
       .then((data => {
+        if (data) {
+          for (var i = 0, len = data.length; i < len; ++i) {
+            if (data[i].get('correctCount') == 0) {
+              data[i].set('correctAvgTime', 'N/A')
+            } else {
+              data[i].set('correctAvgTime', Math.round(data[i].get('correctElapsed') / data[i].get('correctCount')))
+
+            }
+          }
+        }
         this.setData({ top5List: data })
       }
       )).catch(console.error)
