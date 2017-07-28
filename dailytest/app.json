@@ -43,7 +43,7 @@
       },
       {
         "pagePath": "pages/my/my",
-        "text": "我的",
+        "text": "荣耀榜",
         "iconPath": "image/iconfont-user.png",
         "selectedIconPath": "image/iconfont-user-active.png"
       }
