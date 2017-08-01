@@ -95,7 +95,7 @@
               </view>
               <view class="weui-form-preview__item">
                 <view class="weui-form-preview__label">全部题目</view>
-                <view class="weui-form-preview__value">{{alltopicCount}}道</view>
+                <view class="weui-form-preview__value">{{alltopicCount}}</view>
               </view>
             </view>
           </view>
