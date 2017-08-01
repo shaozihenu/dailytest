@@ -1,0 +1,4 @@
+<!--pic.wxml-->
+<view >
+      <image style="width: 375px; height: 500px;" mode="scaleToFill" src="../../image/clms.jpeg"></image>
+</view>

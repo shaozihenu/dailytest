@@ -1,0 +1,2 @@
+/* pic.wxss */
+@import "../../libs/weui.wxss";

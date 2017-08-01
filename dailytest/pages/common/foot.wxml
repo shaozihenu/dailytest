@@ -1,7 +1,7 @@
 <template name="foot">
   <view class="page__bd page__bd_spacing">
     <view class="weui-footer weui-footer_fixed-bottom">
-      <view class="weui-footer__text">Copyright © 2017 客户回馈出品</view>
+      <view class="weui-footer__text">Copyright © 2017 <navigator open-type="navigate" url="../clmshome/pic" class="weui-msg__link">客户回馈出品</navigator></view>
     </view>
   </view>
 </template>
