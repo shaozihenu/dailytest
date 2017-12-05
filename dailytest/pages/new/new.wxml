@@ -118,7 +118,10 @@
         </view>
       </view>
       <view class="weui-btn-area">
-        <button type="primary" formType="submit">确定</button>
+      <loading hidden="{{hidden}}">
+        提交中...
+      </loading>
+        <button type="primary" disabled="{{buthidden}}" formType="submit">确定</button>
         <button type="dedault" formType="reset">清空</button>
       </view>
     </form>

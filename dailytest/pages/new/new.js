@@ -20,6 +20,8 @@ Page({
     showTopTips: false,
     topicOptionArr: [{}],
     userInfo: {},
+    hidden: true, //等待的展示与隐藏的控制
+    buthidden: false //按钮的可用和不可用的控制
   },
   removeOptions: function (e) {
     console.log('当前携带值为', this.data.topicOptions.length)
@@ -77,7 +79,11 @@ Page({
     console.log('form发生了reset事件')
   },
   formSubmit: function (e) {
-
+    //显示等待、禁用按钮，后台返回错误则将true和false对调一下就是隐藏等待、启用按钮
+    this.setData({
+      hidden: false,
+      buthidden: true
+    })
     if (e.detail.value.topicTitle == "") {
       this.setData({
         showTopTips: true,
