@@ -77,7 +77,8 @@ Page({
     var lastDate = util.dateSubtractDate(new Date())
     console.log('lastDate', lastDate)
     query.equalTo("userId", user.get('username'))
-    query.lessThanOrEqualTo('endTime', new Date(lastDate))
+    //modify by sunshao 20171205 支持查看当前已完成答题
+    query.lessThanOrEqualTo('endTime', new Date())
     query.descending('createdAt')
     query.find()
       .then((data => {

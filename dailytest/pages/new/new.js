@@ -1,4 +1,5 @@
 // new.js
+var util = require('../../utils/util.js')
 const AV = require('../../libs/av-weapp-min.js')
 var app = getApp()
 Page({
@@ -13,8 +14,8 @@ Page({
     phaseIdx: 0,
     phaseArray: [],
     topicOptions: ['topicOption0'],
-    beginDate: '',
-    endDate: '',
+    beginDate: util.formatTime2(new Date()),
+    endDate: util.formatTime2(new Date()),
     errorMsg: '',
     showTopTips: false,
     topicOptionArr: [{}],
@@ -321,14 +322,15 @@ Page({
       this.ohShitfadeOut();
       return;
     }
-    if (e.detail.value.topicAnalysis == "") {
-      this.setData({
-        showTopTips: true,
-        errorMsg: '题目解析不能为空'
-      })
-      this.ohShitfadeOut();
-      return;
-    }
+    //删除题目解析不能为空校验
+    // if (e.detail.value.topicAnalysis == "") {
+    //   this.setData({
+    //     showTopTips: true,
+    //     errorMsg: '题目解析不能为空'
+    //   })
+    //   this.ohShitfadeOut();
+    //   return;
+    // }
     if (e.detail.value.beginDate == "") {
       this.setData({
         showTopTips: true,
