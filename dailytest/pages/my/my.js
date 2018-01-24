@@ -94,6 +94,7 @@ Page({
   },
   getTotalList: function () {
     var query = new AV.Query('totalList')
+    query.greaterThan('correctCount', 0)
     query.addDescending('correctCount')
     query.addAscending('correctElapsed')
     query.addDescending('totalCount')
